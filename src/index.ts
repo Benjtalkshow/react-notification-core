@@ -1,3 +1,4 @@
+// Main exports
 export { NotificationProvider, useNotifications } from "./context/NotificationContext"
 
 // Hooks
