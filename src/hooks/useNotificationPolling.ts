@@ -1,75 +1,83 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useCallback } from "react"
 import { useNotifications } from "../context/NotificationContext"
+import type { UseNotificationPollingOptions } from "../types"
+import { fetchWithRetry } from "../utils/fetchUtils"
 
-interface UseNotificationPollingOptions {
-  enabled?: boolean
-  interval?: number
-  onError?: (error: any) => void
-}
-
+/**
+ * Hook for polling notifications at regular intervals
+ */
 export const useNotificationPolling = ({
-  enabled = true,
-  interval = 60000, // Default to 1 minute
-  onError,
+    enabled = true,
+    interval = 60000, // Default to 1 minute
+    onError,
+    retryCount = 3,
+    retryDelay = 1000,
 }: UseNotificationPollingOptions = {}) => {
-  const { refreshNotifications } = useNotifications()
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+    const { refreshNotifications } = useNotifications()
+    const intervalRef = useRef<NodeJS.Timeout | null>(null)
+    const isPollingRef = useRef(enabled)
 
-  useEffect(() => {
-    if (!enabled) return
-
-    const fetchNotifications = async () => {
-      try {
-        await refreshNotifications()
-      } catch (error) {
-        if (onError) {
-          onError(error)
-        } else {
-          console.error("Error polling notifications:", error)
-        }
-      }
-    }
-
-    // Initial fetch
-    fetchNotifications()
-
-    // Set up interval
-    intervalRef.current = setInterval(fetchNotifications, interval)
-
-    // Clean up
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-  }, [enabled, interval, refreshNotifications, onError])
-
-  // Return a function to manually refresh
-  return {
-    refresh: refreshNotifications,
-    stopPolling: () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-        intervalRef.current = null
-      }
-    },
-    startPolling: () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-      intervalRef.current = setInterval(async () => {
+    const fetchNotifications = useCallback(async () => {
         try {
-          await refreshNotifications()
+            await fetchWithRetry(refreshNotifications, { retryCount, retryDelay })
         } catch (error) {
-          if (onError) {
-            onError(error)
-          } else {
-            console.error("Error polling notifications:", error)
-          }
+            if (onError) {
+                onError(error)
+            } else {
+                console.error("Error polling notifications:", error)
+            }
         }
-      }, interval)
-    },
-  }
+    }, [refreshNotifications, retryCount, retryDelay, onError])
+
+    // Set up and clean up polling
+    useEffect(() => {
+        isPollingRef.current = enabled
+
+        const setupPolling = () => {
+            if (!enabled) return
+
+            // Initial fetch
+            fetchNotifications()
+
+            // Set up interval
+            intervalRef.current = setInterval(fetchNotifications, interval)
+        }
+
+        setupPolling()
+
+        // Clean up
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+                intervalRef.current = null
+            }
+        }
+    }, [enabled, interval, fetchNotifications])
+
+    // Return control functions
+    return {
+        refresh: fetchNotifications,
+
+        stopPolling: useCallback(() => {
+            isPollingRef.current = false
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+                intervalRef.current = null
+            }
+        }, []),
+
+        startPolling: useCallback(() => {
+            isPollingRef.current = true
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+            }
+
+            fetchNotifications()
+            intervalRef.current = setInterval(fetchNotifications, interval)
+        }, [fetchNotifications, interval]),
+
+        isPolling: () => isPollingRef.current,
+    }
 }

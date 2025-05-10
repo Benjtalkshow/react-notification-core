@@ -1,81 +1,69 @@
 import type React from "react"
+
 export interface Notification {
-  id: string
-  title: string
-  message: string
-  timestamp: Date | string
-  read: boolean
-  type?: "info" | "success" | "warning" | "error"
-  link?: string
-  image?: string
-  data?: Record<string, any>
+    id: string
+    title: string
+    message: string
+    timestamp: Date | string
+    read: boolean
+    type?: "info" | "success" | "warning" | "error"
+    link?: string
+    data?: Record<string, any>
 }
 
 export interface NotificationState {
-  notifications: Notification[]
-  unreadCount: number
-  isLoading: boolean
-  error: string | null
+    notifications: Notification[]
+    unreadCount: number
+    isLoading: boolean
+    error: string | null
+    lastUpdated: Date | null
 }
 
 export type NotificationAction =
-  | { type: "FETCH_NOTIFICATIONS_REQUEST" }
-  | { type: "FETCH_NOTIFICATIONS_SUCCESS"; payload: Notification[] }
-  | { type: "FETCH_NOTIFICATIONS_FAILURE"; payload: string }
-  | { type: "ADD_NOTIFICATION"; payload: Notification }
-  | { type: "MARK_AS_READ"; payload: string }
-  | { type: "MARK_ALL_AS_READ" }
-  | { type: "DELETE_NOTIFICATION"; payload: string }
+    | { type: "FETCH_NOTIFICATIONS_REQUEST" }
+    | { type: "FETCH_NOTIFICATIONS_SUCCESS"; payload: Notification[] }
+    | { type: "FETCH_NOTIFICATIONS_FAILURE"; payload: string }
+    | { type: "ADD_NOTIFICATION"; payload: Notification }
+    | { type: "MARK_AS_READ"; payload: string }
+    | { type: "MARK_ALL_AS_READ" }
+    | { type: "DELETE_NOTIFICATION"; payload: string }
+    | { type: "CLEAR_ALL_NOTIFICATIONS" }
 
 export interface NotificationContextType extends NotificationState {
-  addNotification: (notification: Notification) => void
-  markAsRead: (id: string) => Promise<void>
-  markAllAsRead: () => Promise<void>
-  deleteNotification: (id: string) => Promise<void>
-  refreshNotifications: () => Promise<void>
+    addNotification: (notification: Notification) => void
+    markAsRead: (id: string) => Promise<void>
+    markAllAsRead: () => Promise<void>
+    deleteNotification: (id: string) => Promise<void>
+    clearAllNotifications: () => void
+    refreshNotifications: () => Promise<void>
 }
 
-export interface NotificationIconProps {
-  className?: string
-  onClick?: () => void
-  showBadge?: boolean
-  badgePosition?: "top-right" | "top-left" | "bottom-right" | "bottom-left"
-  customBadge?: React.ReactNode
+export interface FetchOptions {
+    retryCount?: number
+    retryDelay?: number
+    timeout?: number
+    headers?: Record<string, string>
 }
 
-export interface NotificationDropdownProps {
-  isOpen: boolean
-  onClose: () => void
-  headerText?: string
-  emptyText?: string
-  showMarkAllAsRead?: boolean
-  maxHeight?: string | number
-  className?: string
-  renderNotificationItem?: (
-    notification: Notification,
-    markAsRead: (id: string) => Promise<void>,
-    deleteNotification: (id: string) => Promise<void>,
-  ) => React.ReactNode
+export interface NotificationProviderProps {
+    children: React.ReactNode
+    fetchNotifications?: () => Promise<Notification[]>
+    onMarkAsRead?: (id: string) => Promise<void>
+    onMarkAllAsRead?: () => Promise<void>
+    onDeleteNotification?: (id: string) => Promise<void>
+    fetchOptions?: FetchOptions
+    initialState?: Partial<NotificationState>
 }
 
-export interface NotificationItemProps {
-  notification: Notification
-  onMarkAsRead: (id: string) => Promise<void>
-  onDelete: (id: string) => Promise<void>
-  className?: string
+export interface UseNotificationPollingOptions {
+    enabled?: boolean
+    interval?: number
+    onError?: (error: any) => void
+    retryCount?: number
+    retryDelay?: number
 }
 
-export interface NotificationCenterProps {
-  iconClassName?: string
-  dropdownClassName?: string
-  badgePosition?: "top-right" | "top-left" | "bottom-right" | "bottom-left"
-  headerText?: string
-  emptyText?: string
-  showMarkAllAsRead?: boolean
-  maxHeight?: string | number
-  renderNotificationItem?: (
-    notification: Notification,
-    markAsRead: (id: string) => Promise<void>,
-    deleteNotification: (id: string) => Promise<void>,
-  ) => React.ReactNode
+export interface UseNotificationStorageOptions {
+    storageKey?: string
+    useSessionStorage?: boolean
 }
