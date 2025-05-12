@@ -6,9 +6,11 @@ node_modules
 .next/cache
 
 
+
 # Production
 dist
 build
+src/example/basic-nextjs/node_modules
 
 # Misc
 .DS_Store
