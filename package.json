@@ -22,7 +22,7 @@
     "typescript",
     "hooks"
   ],
-  "author": "Your Name",
+  "author": "Nnaji Benjamin",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
