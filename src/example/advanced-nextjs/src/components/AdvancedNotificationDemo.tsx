@@ -16,7 +16,6 @@ import NotificationFilters from "./NotificationFilters"
 import NotificationStats from "./NotificationStats"
 
 export default function AdvancedNotificationDemo() {
-  // Basic notification functionality
   const {
     notifications,
     unreadCount,

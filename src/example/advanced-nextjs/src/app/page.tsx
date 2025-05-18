@@ -1,3 +1,4 @@
+"use client"
 import AdvancedNotificationDemo from "@/components/AdvancedNotificationDemo"
 import { NotificationProvider } from "react-notification-core"
 import { mockFetchNotifications, mockMarkAsRead, mockMarkAllAsRead, mockDeleteNotification } from "@/lib/mockApi"
