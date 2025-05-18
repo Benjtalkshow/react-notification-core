@@ -21,6 +21,12 @@ npm install react-notification-core
 yarn add react-notification-core
 ```
 
+## Testing examples
+- cd `src/examples`
+- cd into `basic-nextjs-example` or `advanced-nextjs-example`
+- Run `npm install` or `yarn install`
+- Finally, run intall react notification by running `npm install react-notification-core`
+
 ## 🚀 Quick Start
 
 ```jsx
