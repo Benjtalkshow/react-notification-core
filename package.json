@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "Core notification functionality for React applications",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "node build.js",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",
     "prepublishOnly": "npm run build"
@@ -34,9 +35,6 @@
     "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
-    "esbuild": "^0.17.19",
-    "esbuild-node-externals": "^1.7.0",
-    "esbuild-plugin-d.ts": "^1.1.0",
     "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
