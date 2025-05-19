@@ -21,7 +21,9 @@
     "notifications",
     "notification-system",
     "typescript",
-    "hooks"
+    "hooks",
+    "react-notification-core",
+    "react-notification"
   ],
   "author": "Nnaji Benjamin",
   "license": "MIT",
