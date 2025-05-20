@@ -27,6 +27,7 @@ A lightweight, UI-agnostic notification management library for React application
 - [Advanced Usage Examples](#-advanced-usage-examples)
 - [Contributing](#-contributing)
 - [License](#-license)
+- [Community](#-community)
 
 ## ✨ Features
 
@@ -751,5 +752,9 @@ Contributions are welcome! Please see our [contributing guidelines](https://gith
 MIT
 
 ---
+
+## Community
+
+[Telegram](https://t.me/+ZBWd1Z-TKL1hYzg0)
 
 Built with ❤️ by [Benjtalkshow](https://github.com/Benjtalkshow)

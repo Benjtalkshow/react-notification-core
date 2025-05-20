@@ -13,7 +13,7 @@ First off, thank you for considering contributing to React Notification Core! It
 - [Development Workflow](#development-workflow)
   - [Setting Up the Development Environment](#setting-up-the-development-environment)
   - [Code Style Guidelines](#code-style-guidelines)
-
+  - [Community](#-community)
 
 ## How Can I Contribute?
 
@@ -22,6 +22,7 @@ First off, thank you for considering contributing to React Notification Core! It
 This section guides you through submitting a bug report. Following these guidelines helps maintainers and the community understand your report, reproduce the behavior, and find related reports.
 
 **Before Submitting A Bug Report:**
+
 - Check the [issues](https://github.com/Benjtalkshow/react-notification-core/issues) to see if the bug has already been reported
 - Perform a quick search to see if the problem has already been addressed
 - Determine if the issue is consistently reproducible
@@ -43,6 +44,7 @@ Bugs are tracked as [GitHub issues](https://github.com/Benjtalkshow/react-notifi
 This section guides you through submitting an enhancement suggestion, including completely new features and minor improvements to existing functionality.
 
 **Before Submitting An Enhancement Suggestion:**
+
 - Check if the enhancement has already been suggested
 - Check if it aligns with the project's scope and goals
 
@@ -80,22 +82,26 @@ The process for submitting a pull request:
 React Notification Core follows a structured issue assignment process to ensure smooth collaboration:
 
 1. **Issue Creation**: Anyone can create an issue to report bugs or suggest enhancements
+
    - Utilize the provided templates when available
    - Tag issues appropriately (`bug`, `enhancement`, `documentation`, etc.)
 
 2. **Maintainer Review**: Maintainers will review new issues and may:
+
    - Ask for more information if needed
    - Apply additional labels
    - Add the issue to a project board
    - Close the issue if it's a duplicate or not relevant
 
 3. **Issue Assignment**:
+
    - Maintainers may assign issues to specific contributors
    - Contributors can request to be assigned to an issue by commenting
    - Issues marked with `good first issue` are especially suitable for new contributors
    - **Important**: Wait for maintainer approval before starting work on an issue
 
 4. **Working on an Issue**:
+
    - Once assigned, update the issue with your progress
    - If you can't complete the issue, please notify the maintainers so it can be reassigned
    - Aim to make progress within two weeks of assignment, or the issue may be reassigned
@@ -109,23 +115,25 @@ React Notification Core follows a structured issue assignment process to ensure 
 ### Setting Up the Development Environment
 
 1. Fork and clone the repository:
+
    ```
    git clone https://github.com/your-username/react-notification-core.git
    cd react-notification-core
    ```
 
 2. Install dependencies:
+
    ```
    npm install
    ```
 
 3. Create a branch for your feature or bugfix:
+
    ```
    git checkout -b feature/your-feature-name
    ```
 
 4. Make your changes and commit them with a clear, descriptive commit message
-
 
 - Make sure to add or update tests for your changes
 
@@ -133,6 +141,7 @@ React Notification Core follows a structured issue assignment process to ensure 
 
 - Follow the existing code style
 - Use the provided ESLint and Prettier configurations:
+
   ```
   npm run lint
   npm run format
@@ -143,23 +152,24 @@ React Notification Core follows a structured issue assignment process to ensure 
   - Avoid using `any` type unless absolutely necessary
   - Document public APIs with JSDoc comments
 
-
-
 ## Building and Testing the Package Locally
 
 To build and test the package locally:
 
 1. Build the package:
+
    ```
    npm run build
    ```
 
 2. Link the package globally:
+
    ```
    npm link
    ```
 
 3. In your test project:
+
    ```
    npm link react-notification-core
    ```
@@ -179,3 +189,7 @@ Thank you to all the people who have already contributed to React Notification C
 ---
 
 This contributing guide is adapted from the open-source contributing guide template.
+
+## Community
+
+[Telegram](https://t.me/+ZBWd1Z-TKL1hYzg0)
