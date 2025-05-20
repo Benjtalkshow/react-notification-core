@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { useNotifications } from "../context/NotificationContext";
 import type { UseNotificationStorageOptions, Notification } from "../types";

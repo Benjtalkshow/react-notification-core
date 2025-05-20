@@ -1,7 +1,11 @@
 {
   "name": "react-notification-core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Core notification functionality for React applications",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjtalkshow/react-notification-core.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -27,6 +31,10 @@
   ],
   "author": "Nnaji Benjamin",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benjtalkshow/react-notification-core/issues"
+  },
+  "homepage": "https://github.com/benjtalkshow/react-notification-core#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
