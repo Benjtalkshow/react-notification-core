@@ -1,5 +1,3 @@
-"use client"
-
 import { useMemo } from "react"
 import { useNotifications } from "../context/NotificationContext"
 import { groupNotificationsByDate } from "../utils/fetchUtils"

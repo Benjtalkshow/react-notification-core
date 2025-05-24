@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useRef, useCallback } from "react"
 import { useNotifications } from "../context/NotificationContext"
 import type { UseNotificationPollingOptions } from "../types"

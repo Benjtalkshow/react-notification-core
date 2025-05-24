@@ -1,16 +1,21 @@
 {
   "name": "react-notification-core",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Core notification functionality for React applications",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjtalkshow/react-notification-core.git"
+  },
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "node build.js",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint src --ext .ts,.tsx",
     "prepublishOnly": "npm run build"
@@ -20,10 +25,16 @@
     "notifications",
     "notification-system",
     "typescript",
-    "hooks"
+    "hooks",
+    "react-notification-core",
+    "react-notification"
   ],
-  "author": "Your Name",
+  "author": "Nnaji Benjamin",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benjtalkshow/react-notification-core/issues"
+  },
+  "homepage": "https://github.com/benjtalkshow/react-notification-core#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -34,9 +45,6 @@
     "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
-    "esbuild": "^0.17.19",
-    "esbuild-node-externals": "^1.7.0",
-    "esbuild-plugin-d.ts": "^1.1.0",
     "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
